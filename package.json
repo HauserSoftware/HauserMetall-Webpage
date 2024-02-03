@@ -1,0 +1,12 @@
+{
+  "name": "hauser-metall-webpage",
+  "version": "0.0.1",
+  "description": "The website for the Hauser Metall Shop",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "HauserSoftware",
+  "license": "Apache-2.0"
+}
