@@ -2,3 +2,5 @@ on: [push]
 jobs:
   lint:
     uses: ./.github/workflows/_lint.yml
+  audit:
+    uses: ./.github/workflows/_audit.yml
