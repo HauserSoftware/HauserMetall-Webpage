@@ -1,0 +1,14 @@
+name: 'Hello World'
+description: 'Greet someone and record the time'
+runs:
+  using: 'composite'
+  steps:
+    - uses: actions/setup-node@v4
+      with:
+        node-version: 20
+    - uses: pnpm/action-setup@v3
+      with:
+        version: 8
+        run_install: |
+          - recursive: true
+            args: [--frozen-lockfile, --strict-peer-dependencies]

@@ -1,0 +1,12 @@
+{
+  // $schema provides code completion hints to IDEs.
+  "$schema": "https://github.com/IBM/audit-ci/raw/main/docs/schema.json",
+  "moderate": true,
+  "allowlist": [
+    // Example
+    //"GHSA-42xw-2xvc-qx8m",
+    // Alternatively, allowlist "GHSA-rp65-9cf3-cjxr" to suppress this nth-check advisory across all paths
+    // or "*|react-scripts>*" to suppress advisories for all transitive dependencies of "react-scripts".
+    // "GHSA-rp65-9cf3-cjxr|react-scripts>@svgr/webpack>@svgr/plugin-svgo>svgo>css-select>nth-check"
+  ],
+}
