@@ -1,0 +1,22 @@
+version: 2
+updates:
+  - package-ecosystem: 'npm' # See documentation for possible values
+    directory: '/' # Location of package manifests
+    schedule:
+      interval: 'weekly'
+    groups:
+      astro_major:
+        patterns:
+          - '@astrojs*'
+          - 'astro'
+        update-types:
+          - 'major'
+      eslint:
+        patterns:
+          - '*eslint*'
+      minors:
+        update-types:
+          - 'minor'
+      patches:
+        update-types:
+          - 'patch'
