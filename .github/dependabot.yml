@@ -11,6 +11,14 @@ updates:
           - 'astro'
         update-types:
           - 'major'
+          - 'minor'
+      release:
+        patterns:
+          - '*commitlint*'
+          - '*semantic-release*'
+        update-types:
+          - 'major'
+          - 'minor'
       eslint:
         patterns:
           - '*eslint*'
