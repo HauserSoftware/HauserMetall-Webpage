@@ -1,0 +1,146 @@
+---
+/**
+  How to add new pages to the nav bar:
+  1. add a page name to the PageName type
+  2. add an entry at the correct position to the pages list
+  3. add a condition to getCurrentPage to detect if the user is currently at this page
+*/
+
+import InactiveLink from './InactiveLink.astro';
+import ActiveLink from './ActiveLink.astro';
+import { PageLink } from './types';
+type PageName = 'home' | 'inspirations' | 'career' | 'company' | 'contact';
+type Page = PageLink & { name: PageName };
+const pages: Page[] = [
+  {
+    title: 'HOME',
+    link: '/',
+    name: 'home',
+  },
+  {
+    title: 'INSPIRATIONS',
+    link: '/inspirations',
+    name: 'inspirations',
+  },
+  {
+    title: 'CAREER',
+    link: '/career',
+    name: 'career',
+  },
+  {
+    title: 'COMPANY',
+    link: '/company',
+    name: 'company',
+  },
+  {
+    title: 'CONTACT',
+    link: '/contact',
+    name: 'contact',
+  },
+];
+
+const getCurrentPage = (): PageName => {
+  const pathname = Astro.url.pathname.trim();
+
+  if (pathname === '/') {
+    return 'home';
+  }
+  if (pathname.includes('inspirations')) {
+    return 'inspirations';
+  }
+  if (pathname.includes('inspirations')) {
+    return 'inspirations';
+  }
+  if (pathname.includes('carrer')) {
+    return 'career';
+  }
+  if (pathname.includes('company')) {
+    return 'company';
+  }
+  if (pathname.includes('contact')) {
+    return 'contact';
+  }
+
+  console.warn(
+    'Active Navbar Page could not be determined for path: ',
+    pathname,
+  );
+  return 'home';
+};
+
+const currentPage: PageName = getCurrentPage();
+---
+
+<nav class="bg-white border-gray-200 dark:bg-gray-900">
+  <div
+    class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4"
+  >
+    <a
+      href="https://hausermetall.de"
+      class="flex items-center space-x-3 rtl:space-x-reverse"
+    >
+      <img
+        src="/images/logo_transparent.png"
+        class="h-16"
+        alt="Hauser Metall Logo"
+      />
+    </a>
+    <button
+      id="navbar-burgerMenu"
+      type="button"
+      class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+      aria-controls="navbar-links"
+      aria-expanded="false"
+    >
+      <span class="sr-only">Open main menu</span>
+      <svg
+        class="w-5 h-5"
+        aria-hidden="true"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 17 14"
+      >
+        <path
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M1 1h15M1 7h15M1 13h15"></path>
+      </svg>
+    </button>
+    <div class="hidden w-full md:block md:w-auto" id="navbar-links">
+      <ul
+        class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700"
+      >
+        {
+          pages.map(({ name, link, title }) => {
+            if (name === currentPage) {
+              return <ActiveLink link={link} title={title} />;
+            }
+            return <InactiveLink link={link} title={title} />;
+          })
+        }
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<script>
+  const $burgerMenuButton = document.getElementById('navbar-burgerMenu');
+
+  function onBurgerMenuClick() {
+    const $navBar = document.getElementById('navbar-links');
+
+    if ($burgerMenuButton.getAttribute('aria-expanded') === 'true') {
+      $navBar.classList.add('hidden');
+      $burgerMenuButton.setAttribute('aria-expanded', 'false');
+    } else {
+      $navBar.classList.remove('hidden');
+      $burgerMenuButton.setAttribute('aria-expanded', 'true');
+    }
+  }
+
+  if ($burgerMenuButton) {
+    $burgerMenuButton.addEventListener('click', onBurgerMenuClick);
+  }
+</script>
