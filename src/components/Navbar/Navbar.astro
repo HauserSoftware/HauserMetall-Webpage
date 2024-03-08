@@ -9,18 +9,33 @@
 import InactiveLink from './InactiveLink.astro';
 import ActiveLink from './ActiveLink.astro';
 import { PageLink } from './types';
-type PageName = 'home' | 'about';
+type PageName = 'home' | 'inspirations' | 'career' | 'company' | 'contact';
 type Page = PageLink & { name: PageName };
 const pages: Page[] = [
   {
-    title: 'Home',
+    title: 'HOME',
     link: '/',
     name: 'home',
   },
   {
-    title: 'About',
-    link: '/about',
-    name: 'about',
+    title: 'INSPIRATIONS',
+    link: '/inspirations',
+    name: 'inspirations',
+  },
+  {
+    title: 'CAREER',
+    link: '/career',
+    name: 'career',
+  },
+  {
+    title: 'COMPANY',
+    link: '/company',
+    name: 'company',
+  },
+  {
+    title: 'CONTACT',
+    link: '/contact',
+    name: 'contact',
   },
 ];
 
@@ -30,8 +45,20 @@ const getCurrentPage = (): PageName => {
   if (pathname === '/') {
     return 'home';
   }
-  if (pathname.includes('about')) {
-    return 'about';
+  if (pathname.includes('inspirations')) {
+    return 'inspirations';
+  }
+  if (pathname.includes('inspirations')) {
+    return 'inspirations';
+  }
+  if (pathname.includes('carrer')) {
+    return 'career';
+  }
+  if (pathname.includes('company')) {
+    return 'company';
+  }
+  if (pathname.includes('contact')) {
+    return 'contact';
   }
 
   console.warn(
@@ -53,14 +80,10 @@ const currentPage: PageName = getCurrentPage();
       class="flex items-center space-x-3 rtl:space-x-reverse"
     >
       <img
-        src="https://flowbite.com/docs/images/logo.svg"
-        class="h-8"
-        alt="Flowbite Logo"
+        src="/images/logo_transparent.png"
+        class="h-16"
+        alt="Hauser Metall Logo"
       />
-      <span
-        class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white"
-        >Hauser Metall</span
-      >
     </a>
     <button
       id="navbar-burgerMenu"
